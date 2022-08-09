@@ -17,6 +17,7 @@
   55% {
     transform: rotateX(90deg);
     color: #fff;
+    background: #fff;
   }
   100% {
     transform: rotateX(0);
@@ -28,9 +29,11 @@
   0% {
     transform: scale(1);
     border-color: #ddd;
+    background: #fff;
   }
   50% {
     transform: scale(1.2);
+    background: #fff;
   }
   100% {
     transform: scale(1);

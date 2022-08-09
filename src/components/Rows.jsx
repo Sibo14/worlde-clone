@@ -2,8 +2,6 @@ import { makeStyles } from "@material-ui/styles";
 import React from "react";
 import clsx from "clsx";
 import { Typography } from "@mui/material";
-import { useEffect } from "react";
-import { useState } from "react";
 
 // >> Styles
 const useStyles = makeStyles(() => ({
@@ -28,33 +26,33 @@ const useStyles = makeStyles(() => ({
     fontSize: "2.5rem",
     "&:nth-child(2)": {
       //never used before basically puts a delay on each squares animation, keyframes were assigned in index.css
-      animationDelay: "0.2s",
-    },
-    "&:nth-child(3)": {
       animationDelay: "0.4s",
     },
-    "&:nth-child(4)": {
+    "&:nth-child(3)": {
       animationDelay: "0.6s",
     },
-    "&:nth-child(5)": {
+    "&:nth-child(4)": {
       animationDelay: "0.8s",
+    },
+    "&:nth-child(5)": {
+      animationDelay: "1.0s",
     },
   },
 
   green: {
     background: "#5ac85a",
     borderColor: "#5ac85a",
-    animation: "flip 0.5s forwards",
+    animation: "flip 0.8s forwards",
   },
   grey: {
     background: "#a1a1a1",
     borderColor: "#a1a1a1",
-    animation: "flip 0.5s forwards",
+    animation: "flip 0.8s forwards",
   },
   orange: {
     background: "#FF7F50",
     borderColor: "#FF7F50",
-    animation: "flip 0.5s forwards",
+    animation: "flip 0.8s forwards",
   },
 }));
 
