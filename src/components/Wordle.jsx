@@ -50,7 +50,7 @@ const Wordle = ({ word }) => {
       window.addEventListener("keyup", handleKeyup);
     }
 
-    if (turn > 5) {
+    if (turn > 5 && !isCorrect) {
       alert("Unlucky Out Of Guess");
       window.addEventListener("keyup", handleKeyup);
     }
