@@ -45,9 +45,19 @@ const Wordle = ({ word }) => {
   useEffect(() => {
     window.addEventListener("keyup", handleKeyup);
 
+    if (isCorrect) {
+      alert("Congrats You Win!!!");
+      window.addEventListener("keyup", handleKeyup);
+    }
+
+    if (turn > 5) {
+      alert("Unlucky Out Of Guess");
+      window.addEventListener("keyup", handleKeyup);
+    }
+
     //Cleanup function to stop multiple instances of key up function
     return () => window.removeEventListener("keyup", handleKeyup);
-  }, [handleKeyup]);
+  }, [handleKeyup, isCorrect, turn]);
 
   // >> Render
   return (

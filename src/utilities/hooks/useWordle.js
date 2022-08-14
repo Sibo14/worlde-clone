@@ -98,23 +98,22 @@ const useWordle = (word) => {
       // no duplicates
 
       if (turn > 5) {
-        console.log("Guesses done");
+        alert("Guesses done");
         return;
       }
 
       if (history.includes(currentGuess)) {
-        console.log("already tried word");
+        alert("already tried word");
         return;
       }
 
       if (currentGuess.length !== 5) {
-        console.log("must be 5 letters");
+        alert.log("must be 5 letters");
         return;
       }
 
       const formatted = formatGuess();
       addNewGuess(formatted);
-      console.log(formatted);
     }
 
     // If key === backspace, remove the last entered value from the string
