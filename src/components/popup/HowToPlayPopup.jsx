@@ -38,6 +38,12 @@ const HowToPlayPopup = () => {
     setShowHowToPlayPopup(false);
   }, []);
   const openPopup = useCallback(() => {
+    window.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        setShowHowToPlayPopup(false);
+        return;
+      }
+    });
     setShowHowToPlayPopup(true);
   }, []);
 
