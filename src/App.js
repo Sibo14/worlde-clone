@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import dictionaryArray from "./utilities/dictionary";
 import _ from "lodash";
-import { makeStyles, Typography } from "@material-ui/core";
+import { makeStyles, Typography, useMediaQuery } from "@material-ui/core";
 import Wordle from "./components/Wordle";
 import HelpIcon from "@material-ui/icons/Help";
 import { IconButton } from "@mui/material";
@@ -33,6 +33,9 @@ const App = () => {
   const [wordsArrary, setWordsArray] = useState(null);
   const [wordOfTheDay, setWordOfTheDay] = useState(null);
 
+  // >> Media
+  const isScreen1024 = useMediaQuery("(max-width:1024px)");
+
   // >> API
 
   // >> Functions
@@ -61,24 +64,43 @@ const App = () => {
   // >> Render
   return (
     <div className={classes.container}>
-      <div className={classes.header}>
-        <div></div>
-        <div>
-          <Typography align="center" variant="h5">
-            Word Puzzle
+      {!isScreen1024 ? (
+        <>
+          <div className={classes.header}>
+            <div></div>
+            <div>
+              <Typography align="center" variant="h5">
+                Word Puzzle
+              </Typography>
+            </div>
+            <div>
+              <IconButton onClick={() => EventEmitter.emit("event_show_hint")}>
+                <HelpIcon />
+              </IconButton>
+            </div>
+          </div>
+          <div className={classes.mainContentArea}>
+            {/* only show wordle component when a word of the day is generated */}
+            {wordOfTheDay && <Wordle word={wordOfTheDay} />}
+          </div>
+          <HowToPlayPopup />
+        </>
+      ) : (
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h5">
+            Mobile view of this website is still under construction please view
+            on a laptop to play the wordle clone
           </Typography>
         </div>
-        <div>
-          <IconButton onClick={() => EventEmitter.emit("event_show_hint")}>
-            <HelpIcon />
-          </IconButton>
-        </div>
-      </div>
-      <div className={classes.mainContentArea}>
-        {/* only show wordle component when a word of the day is generated */}
-        {wordOfTheDay && <Wordle word={wordOfTheDay} />}
-      </div>
-      <HowToPlayPopup />
+      )}
     </div>
   );
 };
