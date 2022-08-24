@@ -34,7 +34,7 @@ const App = () => {
   const [wordOfTheDay, setWordOfTheDay] = useState(null);
 
   // >> Media
-  const isScreen1024 = useMediaQuery("(max-width:1024px)");
+  const isScreen1024 = useMediaQuery("(min-width:1024px)");
 
   // >> API
 
@@ -64,7 +64,7 @@ const App = () => {
   // >> Render
   return (
     <div className={classes.container}>
-      {!isScreen1024 ? (
+      {isScreen1024 ? (
         <>
           <div className={classes.header}>
             <div></div>
