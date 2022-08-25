@@ -3,6 +3,7 @@ import React, { useCallback, useState } from "react";
 import { useEffect } from "react";
 import useWordle from "../utilities/hooks/useWordle";
 import Popup from "./common/Popup";
+import GameState from "./GameState";
 import Grid from "./Grid";
 import Keypad from "./Keypad";
 import GameStatePopup from "./popup/GameStatePopup";
@@ -42,31 +43,37 @@ const Wordle = ({ word }) => {
   // Gives us access to the state and function found in useWorld component
   const { currentGuess, handleKeyup, guesses, isCorrect, turn, usedKeys } =
     useWordle(word);
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
 
   // >> UseEffect
   useEffect(() => {
     window.addEventListener("keyup", handleKeyup);
 
-    if (isCorrect) {
-      setTimeout(() => setShowModal(true), 2000);
-      window.addEventListener("keyup", handleKeyup);
-    }
+    // console.log(isCorrect);
+    // console.log(turn);
+    // if (isCorrect) {
+    //   setTimeout(() => {
+    //     setShowModal(true);
+    //   }, 2000);
+    //   // window.addEventListener("keyup", handleKeyup);
+    // }
 
-    if (turn > 5 && !isCorrect) {
-      setTimeout(() => setShowModal(true), 2000);
-      window.addEventListener("keyup", handleKeyup);
-    }
+    // if (turn > 5 && !isCorrect) {
+    //   setTimeout(() => {
+    //     setShowModal(true);
+    //   }, 2000);
+    //   // window.addEventListener("keyup", handleKeyup);
+    // }
 
     //Cleanup function to stop multiple instances of key up function
     return () => {
       window.removeEventListener("keyup", handleKeyup);
     };
-  }, [handleKeyup, isCorrect, turn, showModal]);
+  }, [handleKeyup]);
 
-  const closeModal = useCallback(() => {
-    setShowModal(false);
-  }, []);
+  // const closeModal = useCallback(() => {
+  //   setShowModal(false);
+  // }, []);
 
   // >> Render
   return (
@@ -79,17 +86,19 @@ const Wordle = ({ word }) => {
           <Keypad usedKeys={usedKeys} />
         </div>
       </div>
-      {showModal && (
-        <Popup
-          title="Thank You For Playing!"
-          height="30%"
-          width="30%"
-          open={showModal}
-          close={closeModal}
-        >
-          <GameStatePopup isCorrect={isCorrect} turn={turn} solution={word} />
-        </Popup>
-      )}
+
+      <GameState isCorrect={isCorrect} turn={turn} word={word} />
+      {/* {showModal && ( */}
+      {/* <Popup
+        title="Thank You For Playing!"
+        height="30%"
+        width="30%"
+        open={showModal}
+        close={closeModal}
+      >
+        <GameStatePopup isCorrect={isCorrect} turn={turn} solution={word} />
+      </Popup> */}
+      {/* )} */}
     </div>
   );
 };
