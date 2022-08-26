@@ -2228,6 +2228,7 @@ export const dictionaryArray = [
   "gourd",
   "brown",
   "tasks",
+  "pills",
   "thrum",
   "ficus",
   "stash",
