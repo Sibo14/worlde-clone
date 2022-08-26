@@ -7,9 +7,6 @@ const GameState = ({ isCorrect, turn, word }) => {
 
   // >> UseEffect
   useEffect(() => {
-    console.log(isCorrect);
-    console.log(turn);
-
     if (isCorrect) {
       setTimeout(() => {
         setShowModal(true);
@@ -25,6 +22,7 @@ const GameState = ({ isCorrect, turn, word }) => {
 
   const closeModal = useCallback(() => {
     setShowModal(false);
+    window.location.reload(false);
   }, []);
   return (
     <Popup

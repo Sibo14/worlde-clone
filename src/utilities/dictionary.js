@@ -1,4 +1,8 @@
 export const dictionaryArray = [
+  "gifts",
+  "loves",
+  "types",
+  "posts",
   "cigar",
   "rebut",
   "sissy",
@@ -2223,6 +2227,7 @@ export const dictionaryArray = [
   "felon",
   "gourd",
   "brown",
+  "tasks",
   "thrum",
   "ficus",
   "stash",

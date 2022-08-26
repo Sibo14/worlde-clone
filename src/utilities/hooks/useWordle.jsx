@@ -1,13 +1,18 @@
+import { useSnackbar } from "notistack";
 import { useState } from "react";
+import dictionaryArray from "../dictionary";
 
 const useWordle = (word) => {
-  //>> State
+  // >> State
   const [turn, setTurn] = useState(0);
   const [currentGuess, setCurrentGuess] = useState("");
   const [guesses, setGuesses] = useState([...Array(6)]); // each guess is an array, create an array with 6 empty spaces
   const [history, setHistory] = useState([]); // each guess is a string
   const [isCorrect, setIsCorrect] = useState(false);
   const [usedKeys, setUsedKeys] = useState({}); // {a: 'green' , b:'yellow', c:'grey'}
+
+  // >> Snackbar
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   // >> Functions
 
@@ -98,17 +103,22 @@ const useWordle = (word) => {
       // no duplicates
 
       if (turn > 5) {
-        alert("Guesses done");
+        enqueueSnackbar("Guesses done", { variant: "warning" });
         return;
       }
 
       if (history.includes(currentGuess)) {
-        alert("already tried word");
+        enqueueSnackbar("already tried word", { variant: "error" });
         return;
       }
 
       if (currentGuess.length !== 5) {
-        alert.log("must be 5 letters");
+        enqueueSnackbar("must be 5 letters", { variant: "error" });
+        return;
+      }
+
+      if (!dictionaryArray.includes(currentGuess)) {
+        enqueueSnackbar("Please enter a valid word", { variant: "error" });
         return;
       }
 
